@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="1acbb79a-34d2-430f-ab8a-63329b708f90" activeEnvironment="Default" name="REST Project 1" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" resourceRoot="" encryptionMode="Not encrypted" updated="3.7.0 2021-03-30T19:14:40Z" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="d8ec4efe-f9cf-4b11-b69a-0045f74cf957" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://216.10.245.166" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://216.10.245.166</con:endpoint></con:endpoints><con:resource name="" path="/maps/api/place/add/json" id="91cbdbf1-baa0-49d2-9fcd-4e8a0d580ca0"><con:settings/><con:parameters><con:parameter><con:name>Key</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="1" id="b07d2772-e6a0-4440-a1b6-b60ece055626" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json;charset=UTF-8</con:mediaType><con:status>200</con:status><con:params/><con:element xmlns:json="http://216.10.245.166/maps/api/place/add/json">json:Response</con:element></con:representation><con:request name="Request 1" id="021fddca-b6b8-457c-bf52-645fce45bfbb" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{
+
+    "location":{
+
+        "lat" : -38.383494,
+
+        "lng" : 33.427362
+
+    },
+
+    "accuracy":50,
+
+    "name":"Frontline house",
+
+    "phone_number":"(+91) 983 893 3937",
+
+    "address" : "29, side layout, cohen 09",
+
+    "types": ["shoe park","shop"],
+
+    "website" : "http://google.com",
+
+    "language" : "French-IN"
+
+}
+</con:request><con:originalUri>http://216.10.245.166/maps/api/place/add/json</con:originalUri><con:credentials><con:selectedAuthProfile>No Authorization</con:selectedAuthProfile><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Key" value="qaclick123" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Key</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:testSuite id="795badb9-2ea1-4044-9251-7552e879bb87" name="AddPlace-TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="7d92a73f-0a35-4066-8bdb-e98b8bc028e9" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="AddPlace-TestCase" searchProperties="true"><con:settings/><con:testStep type="restrequest" name="contactDetails-TestStep" id="b3714d54-0dd2-4389-b65f-1ab6349862b7"><con:settings/><con:config service="http://216.10.245.166" resourcePath="/maps/api/place/add/json" methodName="1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:restRequest name="contactDetails-TestStep" id="021fddca-b6b8-457c-bf52-645fce45bfbb" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding/><con:endpoint>http://216.10.245.166</con:endpoint><con:request>{
+
+    "location":{
+
+        "lat" : -38.383494,
+
+        "lng" : 33.427362
+
+    },
+
+    "accuracy":50,
+
+    "name":"Frontline house",
+
+    "phone_number":"(+91) 983 893 3937",
+
+    "address" : "29, side layout, cohen 09",
+
+    "types": ["shoe park","shop"],
+
+    "website" : "http://google.com",
+
+    "language" : "French-IN"
+
+}
+</con:request><con:originalUri>http://216.10.245.166/maps/api/place/add/json</con:originalUri><con:assertion type="Schema Compliance" id="c99548d1-adb1-40c8-b50f-4167e571d6bc" name="Schema Compliance"><con:configuration/></con:assertion><con:assertion type="GroovyScriptAssertion" id="68e5052c-f6f5-4385-84b1-e5f189278c8f" name="Script Assertion"><con:configuration/></con:assertion><con:credentials><con:selectedAuthProfile>MyProfile1</con:selectedAuthProfile><con:authType>OAuth 2.0</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="Key" value="qaclick123" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>Key</con:entry></con:parameterOrder></con:restRequest></con:config></con:testStep><con:testStep type="groovy" name="Groovy Script" id="8288c343-6bfc-4ab4-baa7-6c0b6612fe07"><con:settings/><con:config><script>import com.fasterxml.jackson.databind.JsonNode
+
+import com.fasterxml.jackson.databind.ObjectMapper
+
+import com.github.fge.jsonschema.core.report.ProcessingReport
+
+import com.github.fge.jsonschema.main.JsonSchema
+
+import com.github.fge.jsonschema.main.JsonSchemaFactory
+
+ def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+def response = context.expand('${contactDetails-TestStep#Response}')
+
+ObjectMapper mapper = new ObjectMapper()
+
+JsonNode responseJSON = mapper.readTree(response)
+
+//JsonNode responseSchemaJSON = mapper.readTree(new File("F:\\SoapUI\\Schema\\contact.txt").text);
+
+JsonNode responseSchemaJSON = mapper.readTree(new File("F:\\SoapUI\\Schema\\contact.json"));
+
+JsonSchemaFactory factory = JsonSchemaFactory.byDefault()
+
+JsonSchema responseSchema = factory.getJsonSchema(responseSchemaJSON)
+
+def test_Status=false
+
+ if (responseSchema.validInstance(responseJSON)) {
+
+  log.info("Response Validated!")
+
+  test_Status=true
+  }
+
+else {
+
+  log.info(responseSchema.validate(responseJSON).toString())
+
+}
+
+ assert test_Status==true</script></con:config></con:testStep><con:testStep type="groovy" name="GroovyScript_ImportProg" id="cb172d29-e9c6-4ea4-8867-06b896fe77b5"><con:settings/><con:config><script>import com.java.examples.json.customjsonvalidation.CustomJsonSchemaValidatorNew
+import com.fasterxml.jackson.databind.JsonNode
+import groovy.json.JsonOutput
+import com.fasterxml.jackson.databind.ObjectMapper
+
+import com.github.fge.jsonschema.core.report.ProcessingReport
+
+import com.github.fge.jsonschema.main.JsonSchema
+
+import com.github.fge.jsonschema.main.JsonSchemaFactory
+
+ def groovyUtils = new com.eviware.soapui.support.GroovyUtils(context)
+
+def response = context.expand('${contactDetails-TestStep#Response}')
+def filename="F:\\SoapUI\\Schema\\example1.json"
+
+log.info "this is actual response"+response
+
+File file = new File(filename)
+file.write(response)
+
+/*
+ObjectMapper mapper = new ObjectMapper()
+
+JsonNode responseJSON = mapper.readTree(response)
+log.info responseJSON
+
+*/
+//JsonSchemaValidation data= new JsonSchemaValidation();
+//		boolean ret=data.validateJsonDocument("F:\\SoapUI\\Schema\\contact.json","F:\\SoapUI\\Schema\\contactPayload.json");
+//		log.info "is it json schema valid->"+ret
+
+	CustomJsonSchemaValidatorNew schemadata= new CustomJsonSchemaValidatorNew();
+    	
+    	def result = schemadata.validationJsonSchema(filename, "F:\\SoapUI\\Schema\\contact_Schema.json");	
+
+    	log.info "final result ->"+result</script></con:config></con:testStep><con:properties/><con:reportParameters/></con:testCase><con:properties/><con:reportParameters/></con:testSuite><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:jmsConnectionContainer/><con:oAuth2ProfileContainer><con:oAuth2Profile><con:name>MyProfile</con:name><con:type>OAuth 2.0</con:type><con:authorizationURI>http://216.10.245.166/maps/api/place/add/json</con:authorizationURI><con:accessTokenURI>http://216.10.245.166/maps/api/place/add/json</con:accessTokenURI><con:redirectURI/><con:accessTokenPosition>HEADER</con:accessTokenPosition><con:clientID>Client</con:clientID><con:clientSecret>Client_secret</con:clientSecret><con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow><con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod><con:javaScripts><con:entry>document.getElementById('identifierId').value = 'aparna.guttula@gmail.com';</con:entry><con:entry/></con:javaScripts><con:applyJwtAssertion>false</con:applyJwtAssertion><con:jwtAssertion>eyJhbGciOiJOT</con:jwtAssertion><con:jwtConfiguration><con:keystoreId/><con:keystoreKeyAlias/><con:keystoreKeyPassword/><con:secretKey/><con:signAlgorithm>None</con:signAlgorithm><con:headerProperties><con:property><con:name>alg</con:name><con:value>NONE</con:value></con:property><con:property><con:name>typ</con:name><con:value>JWT</con:value></con:property></con:headerProperties><con:payloadProperties><con:property><con:name>iss</con:name><con:value/></con:property><con:property><con:name>sub</con:name><con:value/></con:property><con:property><con:name>aud</con:name><con:value/></con:property><con:property><con:name>exp</con:name><con:value>1620232985</con:value></con:property><con:property><con:name>nbf</con:name><con:value/></con:property><con:property><con:name>iat</con:name><con:value>1619628185</con:value></con:property><con:property><con:name>jti</con:name><con:value/></con:property></con:payloadProperties></con:jwtConfiguration><con:responseType>id_token</con:responseType></con:oAuth2Profile><con:oAuth2Profile><con:name>MyProfile1</con:name><con:type>OAuth 2.0</con:type><con:authorizationURI>http://216.10.245.166</con:authorizationURI><con:accessTokenURI>http://216.10.245.166</con:accessTokenURI><con:accessTokenPosition>HEADER</con:accessTokenPosition><con:clientID>Client_id</con:clientID><con:clientSecret>Client_secret</con:clientSecret><con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow><con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod><con:jwtConfiguration/><con:responseType>id_token</con:responseType></con:oAuth2Profile></con:oAuth2ProfileContainer><con:oAuth1ProfileContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:authRepository><con:oAuth20AuthEntry><con:name>MyProfile</con:name><con:type>OAuth 2.0</con:type><con:authorizationURI>http://216.10.245.166/maps/api/place/add/json</con:authorizationURI><con:accessTokenURI>http://216.10.245.166/maps/api/place/add/json</con:accessTokenURI><con:redirectURI/><con:accessTokenPosition>HEADER</con:accessTokenPosition><con:clientID>Client</con:clientID><con:clientSecret>Client_secret</con:clientSecret><con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow><con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod><con:javaScripts><con:entry>document.getElementById('identifierId').value = 'aparna.guttula@gmail.com';</con:entry><con:entry/></con:javaScripts><con:applyJwtAssertion>false</con:applyJwtAssertion><con:jwtAssertion>eyJhbGciOiJOT</con:jwtAssertion><con:jwtConfiguration><con:keystoreId/><con:keystoreKeyAlias/><con:keystoreKeyPassword/><con:secretKey/><con:signAlgorithm>None</con:signAlgorithm><con:headerProperties><con:property><con:name>alg</con:name><con:value>NONE</con:value></con:property><con:property><con:name>typ</con:name><con:value>JWT</con:value></con:property></con:headerProperties><con:payloadProperties><con:property><con:name>iss</con:name><con:value/></con:property><con:property><con:name>sub</con:name><con:value/></con:property><con:property><con:name>aud</con:name><con:value/></con:property><con:property><con:name>exp</con:name><con:value>1620232985</con:value></con:property><con:property><con:name>nbf</con:name><con:value/></con:property><con:property><con:name>iat</con:name><con:value>1619628185</con:value></con:property><con:property><con:name>jti</con:name><con:value/></con:property></con:payloadProperties></con:jwtConfiguration><con:responseType>id_token</con:responseType></con:oAuth20AuthEntry><con:oAuth20AuthEntry><con:name>MyProfile1</con:name><con:type>OAuth 2.0</con:type><con:authorizationURI>http://216.10.245.166</con:authorizationURI><con:accessTokenURI>http://216.10.245.166</con:accessTokenURI><con:accessTokenPosition>HEADER</con:accessTokenPosition><con:clientID>Client_id</con:clientID><con:clientSecret>Client_secret</con:clientSecret><con:oAuth2Flow>AUTHORIZATION_CODE_GRANT</con:oAuth2Flow><con:refreshAccessTokenMethod>AUTOMATIC</con:refreshAccessTokenMethod><con:jwtConfiguration/><con:responseType>id_token</con:responseType></con:oAuth20AuthEntry></con:authRepository><con:tags/></con:soapui-project>
