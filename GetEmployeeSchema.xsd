@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:tns="http://sample.com/reservation/guest/types" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://sample.com/reservation/guest/types" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="getEmployeeDetailsResponse">
+  <xs:element name="soapenv:Envelope">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="return">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="age" type="xs:unsignedByte" />
+              <xs:element name="department" type="xs:string" />
+              <xs:element name="id" type="xs:unsignedShort" />
+              <xs:element name="name" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+	
+  </xs:element>
+   <xs:attribute name="xmlns:soapenv" type="xs:string"/>
+</xs:schema>

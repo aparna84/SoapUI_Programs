@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "integer"
+    },
+    "place_id": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "reference": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "place_id",
+    "scope",
+    "reference",
+    "id"
+  ]
+}
